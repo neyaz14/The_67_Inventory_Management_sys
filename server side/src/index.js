@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const connectDB = require('./connectdb');
 const userRoutre = require('./routes/routes');
 const authRouter = require('./routes/authRoutes');
-
+const productRouter = require('./routes/productRouter')
 // ! -----
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -28,13 +28,7 @@ app.use(cors({
 connectDB();
 
 
-
-app.use('/',userRoutre)
-// app.use('/',authRouter)
-
-
 // ! -----------------------------
-
 
 app.use(cookieParser());
 
@@ -92,11 +86,12 @@ app.post('/logout', (req, res) => {
 
 
 
+// ! -------- Router   -----------
 
+app.use('/',userRoutre)
 
-
-
-
+// ? ---- Product api
+app.use('/product', productRouter)
 
 
 
