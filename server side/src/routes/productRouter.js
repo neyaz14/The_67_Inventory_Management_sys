@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router(); 
 const productSchema = require('../Schema/ProductSchema')
 
-router.post('addProduct', async (req, res)=>{
+router.post('/addProduct', async (req, res)=>{
     try {
         // 1️⃣ ক্লায়েন্ট থেকে পাঠানো ডাটা
         const productData = req.body;
@@ -17,7 +17,7 @@ router.post('addProduct', async (req, res)=>{
     
         res
         .send(newProduct)
-        // .json({ message: "Product added successfully", product: newProduct });
+        
       } catch (error) {
         res.status(400).json({ message: "Validation failed", error: error.message });
       }
