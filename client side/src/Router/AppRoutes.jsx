@@ -13,6 +13,7 @@ import PricingManage from '../Pages/Pricing_Management/PricingManage';
 import ReportAnalysis from '../Pages/Report_Analysis/ReportAnalysis';
 import OrderManage from '../Pages/Order_Management/OrderManage';
 import SupplierManage from '../Pages/Supplier_Management/SupplierManage';
+import ProductDetails from '../Pages/AllProducts/ProductDetails';
 
 const AppRoutes = () => {
     return (
@@ -26,6 +27,11 @@ const AppRoutes = () => {
                     <Route path='allProducts' element={
                         <PrivateRoute>
                             <AllProducts></AllProducts>
+                        </PrivateRoute>
+                    } />
+                    <Route path='allProducts/:id' element={
+                        <PrivateRoute>
+                            <ProductDetails />
                         </PrivateRoute>
                     } />
 

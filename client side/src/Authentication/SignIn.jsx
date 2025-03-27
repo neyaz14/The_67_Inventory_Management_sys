@@ -31,21 +31,19 @@ const SignIn = () => {
     }
 
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="hero bg-base-200 min-h-screen ">
             <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left w-96">
-
-                </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <h1 className="ml-8 mt-4 text-5xl font-bold">Login now!</h1>
-                    <form onSubmit={handleSignIn} className="card-body">
-                        <div className="form-control">
+                
+                <div className="card border-none rounded-4xl bg-zinc-950/30 w-full max-w-md shrink-0 shadow-2xl p-10 space-y-3">
+                    <h1 className="ml-8 mt-4 text-5xl text-center font-bold">Login now !</h1>
+                    <form onSubmit={handleSignIn} className="card-body space-y-2">
+                        <div className="form-control space-y-2">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
                             <input type="email" name='email' placeholder="email" className="input input-bordered" required />
                         </div>
-                        <div className="form-control">
+                        <div className="form-control space-y-2">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
@@ -55,7 +53,7 @@ const SignIn = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-primary w-full">Login</button>
                         </div>
                     </form>
                     <SocialLogin></SocialLogin>

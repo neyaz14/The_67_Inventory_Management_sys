@@ -9,6 +9,7 @@ import useAllProducts from "../../dataFetch_hooks/useAllProducts";
 import axios from "axios";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 
 
@@ -54,13 +55,13 @@ const ProductList = () => {
 
 
     return (
-        <div className="p-6 bg-gray-900 min-h-screen text-white">
+        <div className="p-6  min-h-screen text-white">
             <div className="flex justify-between mb-4">
 
 
                 <button
                     onClick={() => { setIsOpen(true) }}
-                    className="btn btn-primary">Add Product</button>
+                    className="btn btn-outline  ">Add Product</button>
 
 
                 <div className="flex gap-2">
@@ -73,8 +74,8 @@ const ProductList = () => {
                 </div>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="table table-zebra w-full bg-gray-800 text-white">
+            <div className="overflow-x-auto shadow-2xl shadow-cyan-400/10">
+                <table className="table table-zebra w-full bg-gray-800 text-white ">
                     <thead>
                         <tr >
                             <th>SKU</th>
@@ -100,7 +101,10 @@ const ProductList = () => {
                                 <td>{product?.wholesaleMin} - {product?.wholesaleMax}</td>
                                 <td></td>
                                 <td className="flex gap-2">
+                                    <Link to={`/allProducts/${product._id}`}>
+                                    
                                     <button className="btn btn-sm btn-outline"><GrView /></button>
+                                    </Link>
                                     <button className="btn btn-sm btn-outline"><CiEdit /></button>
                                     <button onClick={()=>handleDelete(product._id)} className="btn btn-sm btn-outline btn-error"><FiDelete /></button>
                                 </td>
@@ -108,6 +112,7 @@ const ProductList = () => {
                         ))}
                     </tbody>
                 </table>
+
             </div>
 
 

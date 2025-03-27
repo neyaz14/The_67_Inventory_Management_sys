@@ -16,7 +16,7 @@ const useAllProducts = () => {
             return res.data;
         }
     });
-    // console.log(products)
+    // console.log(products.length)
     return [products, refetch, isLoading];
 };
 

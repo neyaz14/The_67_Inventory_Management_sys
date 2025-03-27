@@ -18,10 +18,10 @@ const SocialLogin = () => {
     }
 
     return (
-        <div className='m-4'>
+        <div className='my-4 space-y-2'>
               <div className="divider">OR</div>
 
-            <button onClick={handleGoogleSignIn} className='btn'>Google</button>
+            <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>Google</button>
         </div>
     );
 };
