@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
   sku: { type: String, required: true, unique: true },
+  wholesaleMin: {type: Number,required: true},
+  wholesaleMax: {type: Number,required: true},
   productName: { type: String, required: true },
   barcode: { type: String, required: true },
   stock: { type: Number, required: true },
@@ -16,3 +18,4 @@ const productSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.model("Product", productSchema);
+

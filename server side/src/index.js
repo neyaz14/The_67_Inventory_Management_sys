@@ -88,7 +88,7 @@ app.post('/logout', (req, res) => {
 
 // ! -------- Router   -----------
 
-app.use('/',userRoutre)
+// app.use('/',userRoutre)
 
 // ? ---- Product api
 
