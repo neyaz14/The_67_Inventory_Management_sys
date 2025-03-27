@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
 
-            console.log('state captured', currentUser?.email);
+            // console.log('state captured', currentUser?.email);
             // setLoading(false);
 
             if (currentUser?.email) {
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
 
                 )
                     .then(res => {
-                        console.log('login token', res);
+                        console.log('login token');
                         setLoading(false);
                     })
 
@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
                     withCredentials: true
                 })
                 .then(res => {
-                    console.log('logout', res.data);
+                    console.log('logout');
                     setLoading(false);
                 })
             }

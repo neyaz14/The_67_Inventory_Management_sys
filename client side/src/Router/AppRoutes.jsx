@@ -24,9 +24,9 @@ const AppRoutes = () => {
                     <Route path='login' element={<SignIn></SignIn>} />
 
                     <Route path='allProducts' element={
-                        // <PrivateRoute>
+                        <PrivateRoute>
                             <AllProducts></AllProducts>
-                        // </PrivateRoute>
+                        </PrivateRoute>
                     } />
 
                     <Route path='competitorPrice' element={

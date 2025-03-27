@@ -1,29 +1,53 @@
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdClose } from "react-icons/md";
+
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import SuccessswalTimer from "../../../Components/SuccessswalTimer";
+
 import axios from "axios";
 import Swal from "sweetalert2";
-// import { Button, input, label, Textarea } from "@/components/ui"; // Adjust based on component path
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
+
 
 export default function AddProductModal(isOpen, setIsOpen) {
-    //   const [isOpen, setIsOpen] = useState(false);
+
     const { register, handleSubmit, reset } = useForm();
     const axiosSecure = useAxiosSecure();
-
+    const axiosPublic = useAxiosPublic();
+    
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
 
 
         try {
-            const postedProduct = await axios.post('http://localhost:5000/product/addProduct', data)
+            const postedProduct = await axiosPublic.post('product/addProduct', data)
 
             if (postedProduct.status === 200) {
-                console.log(postedProduct)
-            
+                // console.log(postedProduct)
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "You have successfully added a new Product",
+                    timer: 1650,
+                    background: '#111',
+                    color: '#fff',
+                    showConfirmButton: false,
+                    showClass: {
+                        popup: `
+                                          animate__animated
+                                          animate__fadeInUp
+                                          animate__faster
+                                        `
+                    },
+                    hideClass: {
+                        popup: `
+                                          animate__animated
+                                          animate__fadeOutDown
+                                          animate__faster
+                                        `
+                    }
+                });
+
             }
         } catch (err) {
             console.log(err)
