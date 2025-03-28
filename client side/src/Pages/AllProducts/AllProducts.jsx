@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 // import { EyeIcon, PencilIcon, TrashIcon } from "@heroicons/react/outline";
 import { CiEdit } from "react-icons/ci";
 import { GrView } from "react-icons/gr";

@@ -1,10 +1,14 @@
-import React from 'react';
+import AllSuppliers from "./AllSuppliers";
 
 const SupplierManage = () => {
+
+ 
+
+
     return (
-        <div>
-            <h1>Supplier Management </h1>
-        </div>
+       <div>
+            <AllSuppliers></AllSuppliers>
+       </div>
     );
 };
 

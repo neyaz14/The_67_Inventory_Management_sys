@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect } from 'react';
+import  { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import AuthContext from '../Providers/AuthContext';
 
@@ -7,7 +7,6 @@ import AuthContext from '../Providers/AuthContext';
 const axiosInstance = axios.create(
     {
         baseURL: `http://localhost:5000`,
-    // baseURL: import.meta.env.VITE_URL,
     withCredentials: true,
     }
 )
@@ -33,8 +32,14 @@ const useAxiosSecure = () => {
                 }
                 return Promise.reject(error)
             })
-    },[])
+    },[navigate, signOutUser])
     return axiosInstance;
 };
 
 export default useAxiosSecure;
+
+
+
+
+
+
