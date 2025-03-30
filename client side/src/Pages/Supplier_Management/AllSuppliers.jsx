@@ -1,17 +1,19 @@
 import { useState } from "react";
 import AddSupplier from './AddSupplier'
 import { AiOutlineClose } from "react-icons/ai";
+import useAllSupplierInfo from "../../dataFetch_hooks/useAllSupplierInfo";
+import LoadingSpinner from "../../Components/LoadingSpinner";
 
-const suppliers = [
-    { id: 1, name: "ABC Suppliers", email: "abc@gmail.com", phone: "1234567890" },
-    { id: 2, name: "XYZ Traders", email: "xyz@gmail.com", phone: "9876543210" },
-    { id: 3, name: "LMN Wholesalers", email: "lmn@gmail.com", phone: "5678901234" },
-];
+
 
 const AllSuppliers = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    
+    const [allSupplier, refetch, isLoading] = useAllSupplierInfo();
+    if(isLoading) return <LoadingSpinner></LoadingSpinner>
+    console.log(allSupplier)
+    refetch()
 
     return (
         <div className="p-6 bg-gray-900 min-h-screen text-white">
@@ -32,7 +34,7 @@ const AllSuppliers = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {suppliers.map((supplier) => (
+                        {allSupplier.map((supplier) => (
                             <tr key={supplier.id} className="border-b border-gray-700">
                                 <td className="p-3">{supplier.name}</td>
                                 <td className="p-3">{supplier.email}</td>

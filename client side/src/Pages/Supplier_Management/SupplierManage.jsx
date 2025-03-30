@@ -2,13 +2,20 @@ import AllSuppliers from "./AllSuppliers";
 
 const SupplierManage = () => {
 
- 
+
 
 
     return (
-       <div>
-            <AllSuppliers></AllSuppliers>
-       </div>
+        <div>
+            <div className="h-screen">
+                <AllSuppliers></AllSuppliers>
+            </div>
+
+            <div>
+                
+            </div>
+
+        </div>
     );
 };
 
