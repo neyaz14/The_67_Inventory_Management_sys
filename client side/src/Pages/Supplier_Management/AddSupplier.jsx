@@ -1,24 +1,60 @@
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
-const SupplierModal = ({  setIsModalOpen}) => {
+const SupplierModal = () => {
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
     } = useForm();
+    const axiosPublic = useAxiosPublic();
 
-    const onSubmit = (data) => {
+    const onSubmit =async (data) => {
         console.log(data)
 
         reset();
         // setIsModalOpen(false)
+        try {
+                    const supplier = await axiosPublic.post('supplier/addSupplier', data)
+        
+                    if (supplier.status === 200) {
+                        
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "You have successfully added a new Product",
+                            timer: 1650,
+                            background: '#111',
+                            color: '#fff',
+                            showConfirmButton: false,
+                            showClass: {
+                                popup: `
+                                                  animate__animated
+                                                  animate__fadeInUp
+                                                  animate__faster
+                                                `
+                            },
+                            hideClass: {
+                                popup: `
+                                                  animate__animated
+                                                  animate__fadeOutDown
+                                                  animate__faster
+                                                `
+                            }
+                        });
+        
+                    }
+                } catch (err) {
+                    console.log(err)
+                }
+        
     };
 
     return (
         <div >
             
-
                 <form onSubmit={handleSubmit(onSubmit)}>
                     {/* Name Field */}
                     <div className="mb-3">
@@ -50,7 +86,7 @@ const SupplierModal = ({  setIsModalOpen}) => {
                         <label className="block text-sm">Phone Number:</label>
                         <input
                             type="text"
-                            {...register("phone", {
+                            {...register("phoneNumber", {
                                 required: "Phone number is required",
                                 
                             })}
