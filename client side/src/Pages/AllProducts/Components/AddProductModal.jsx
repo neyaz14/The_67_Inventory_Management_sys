@@ -1,18 +1,18 @@
 
 import { useForm } from "react-hook-form";
 
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-import axios from "axios";
+// import axios from "axios";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 
 
-export default function AddProductModal(isOpen, setIsOpen) {
+export default function AddProductModal() {
 
     const { register, handleSubmit, reset } = useForm();
-    const axiosSecure = useAxiosSecure();
+    // const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
     
     const onSubmit = async (data) => {
@@ -57,7 +57,7 @@ export default function AddProductModal(isOpen, setIsOpen) {
 
 
 
-        // reset();
+        reset();
     };
 
     return (
@@ -97,7 +97,7 @@ export default function AddProductModal(isOpen, setIsOpen) {
                     <input type="number" step="0.01" {...register("costPrice")} className="w-full" />
                 </div>
                 <div>
-                    <label className="text-white">Competitor's URL</label>
+                    <label className="text-white">Competitors URL</label>
                     <input type="url" {...register("competitorUrl")} className="w-full" />
                 </div>
                 <div>
