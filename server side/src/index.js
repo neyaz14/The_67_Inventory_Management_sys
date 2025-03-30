@@ -6,6 +6,7 @@ const connectDB = require('./connectdb');
 const userRoutre = require('./routes/routes');
 const authRouter = require('./routes/authRoutes');
 const productRouter = require('./routes/productRouter')
+const supplierRouter = require('./routes/supplierRoutes')
 // ! -----
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -54,7 +55,7 @@ app.use(cookieParser());
 app.post('/jwt', (req, res) => {
     const user = req.body;
     const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
-    console.log(user,'--: : --' )
+    // console.log(user,'--: : --' )
 
     res
         .cookie('token', token, {
@@ -69,7 +70,7 @@ app.post('/jwt', (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-    console.log('loggedout ---!! ')
+    // console.log('loggedout ---!! ')
     res
         .clearCookie('token', {
             httpOnly: true,
@@ -94,7 +95,7 @@ app.post('/logout', (req, res) => {
 
 app.use('/product', productRouter)
 
-
+app.use('/supplier', supplierRouter )
 
 
 

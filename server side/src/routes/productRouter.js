@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router();
 const productSchema = require('../Schema/ProductSchema')
 const verifyJWT = require('../Middleware/jwtMiddleware')
+
+
+
 router.post('/addProduct', async (req, res) => {
   try {
     //  recieving data from the client 
@@ -26,7 +29,7 @@ router.post('/addProduct', async (req, res) => {
 router.get('/allProducts', async (req, res) => {
   try {
     const allproducts = await productSchema.find();
-    console.log(allproducts.length)
+    // console.log(allproducts.length)
     res.send(allproducts)
   } catch (err) {
     console.log(err)
