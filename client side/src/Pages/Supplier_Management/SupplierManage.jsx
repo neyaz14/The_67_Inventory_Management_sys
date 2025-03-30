@@ -1,4 +1,5 @@
 import AllSuppliers from "./AllSuppliers";
+import SupplierOrders from "./Supplier_Orders/SupplierOrders";
 
 const SupplierManage = () => {
 
@@ -7,12 +8,14 @@ const SupplierManage = () => {
 
     return (
         <div>
-            <div className="h-screen">
+            <div className="  my-5 mb-14">
                 <AllSuppliers></AllSuppliers>
             </div>
 
-            <div>
-                
+            <div className="  my-5">
+                <h1 className=" text-3xl font-semibold opacity-70 text-white text-center">Orders</h1>
+
+                <SupplierOrders></SupplierOrders>
             </div>
 
         </div>

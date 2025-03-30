@@ -24,7 +24,7 @@ const SupplierModal = () => {
                         Swal.fire({
                             position: "center",
                             icon: "success",
-                            title: "You have successfully added a new Product",
+                            title: "You have successfully added a new Supplier Info",
                             timer: 1650,
                             background: '#111',
                             color: '#fff',

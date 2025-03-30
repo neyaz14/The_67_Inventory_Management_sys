@@ -16,7 +16,7 @@ const AllSuppliers = () => {
     refetch()
 
     return (
-        <div className="p-6 bg-gray-900 min-h-screen text-white">
+        <div className="p-6 bg-gray-900  text-white">
             <button
                 className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700"
                 onClick={() => setIsModalOpen(true)}
