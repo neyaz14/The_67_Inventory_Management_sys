@@ -23,4 +23,15 @@ router.post('/addSupplier', async (req, res) => {
 
 })
 
+// send suggestions for the better ui experience 
+router.get("/suggestionsSupplier", async(req,res)=>{
+    try {
+        const suppliers = await supplierSchema.find({}, 'name email _id');
+        res.json(suppliers);
+      } catch (err) {
+        console.error('Error fetching suppliers:', err);
+        res.json({ message: "Error fetching suppliers" });
+      }
+})
+
 module.exports = router
