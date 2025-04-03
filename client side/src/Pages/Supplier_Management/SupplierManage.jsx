@@ -7,7 +7,7 @@ const SupplierManage = () => {
 
 
     return (
-        <div>
+        <div className="">
             <div className="  my-5 mb-14">
                 <AllSuppliers></AllSuppliers>
             </div>

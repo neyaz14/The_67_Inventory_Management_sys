@@ -12,7 +12,7 @@ const AllSuppliers = () => {
     
     const [allSupplier, refetch, isLoading] = useAllSupplierInfo();
     if(isLoading) return <LoadingSpinner></LoadingSpinner>
-    console.log(allSupplier)
+    // console.log(allSupplier)
     refetch()
 
     return (
@@ -38,7 +38,7 @@ const AllSuppliers = () => {
                             <tr key={supplier.id} className="border-b border-gray-700">
                                 <td className="p-3">{supplier.name}</td>
                                 <td className="p-3">{supplier.email}</td>
-                                <td className="p-3">{supplier.phone}</td>
+                                <td className="p-3">{supplier.phoneNumber}</td>
                                 <td className="p-3 flex gap-2">
                                     <button className="px-2 py-1  hover:bg-gray-600 rounded">✏️</button>
                                     <button className="px-2 py-1  hover:bg-red-600 rounded">🗑️</button>
@@ -50,7 +50,7 @@ const AllSuppliers = () => {
             </div>
             {/* {isModalOpen && <AddSupplier setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} />} */}
             {isModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black/35 backdrop-blur-md drop-shadow-2xl ">
+                <div className="fixed inset-0 flex items-center justify-center bg-black/35 backdrop-blur-md drop-shadow-2xl z-100">
                     <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-1/2 relative border border-gray-700">
 
                         {/* Modal Header */}

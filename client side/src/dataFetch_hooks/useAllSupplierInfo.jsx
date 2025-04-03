@@ -12,7 +12,7 @@ const useAllSupplierInfo = () => {
             return res.data;
         }
     });
-    console.log(allSupplier.length)
+    // console.log(allSupplier.length)
     return [allSupplier, refetch, isLoading];
 };
 
