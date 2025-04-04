@@ -7,6 +7,7 @@ const userRoutre = require('./routes/routes');
 const authRouter = require('./routes/authRoutes');
 const productRouter = require('./routes/productRouter')
 const supplierRouter = require('./routes/supplierRoutes')
+const supplierOrdersRoute = require('./routes/supplierOrdersRoute')
 // ! -----
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
@@ -96,6 +97,7 @@ app.post('/logout', (req, res) => {
 app.use('/product', productRouter)
 
 app.use('/supplier', supplierRouter )
+app.use('/supplierOrder', supplierOrdersRoute )
 
 
 
