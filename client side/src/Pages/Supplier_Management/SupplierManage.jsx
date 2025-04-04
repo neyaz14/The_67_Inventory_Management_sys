@@ -8,7 +8,8 @@ const SupplierManage = () => {
 
     return (
         <div className="">
-            <div className="  my-5 mb-14">
+            <div className="my-5 mb-14">
+                <h1 className=" text-3xl font-semibold opacity-70 text-white text-center">All Suppliers</h1>
                 <AllSuppliers></AllSuppliers>
             </div>
 

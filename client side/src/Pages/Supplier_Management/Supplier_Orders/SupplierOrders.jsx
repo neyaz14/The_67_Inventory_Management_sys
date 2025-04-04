@@ -1,41 +1,31 @@
 import { useState } from "react";
 import OrderModal from "./OrderModal";
 import { AiOutlineClose } from "react-icons/ai";
-
-
-const sampleOrders = [
-    {
-        sku: "PROD12345",
-        supplierEmail: "supplier1@example.com",
-        batchNumber: "BATCH001",
-        stockQuantity: 100,
-        expiryDate: "2025-12-31",
-        deliveredItem: 0,
-    },
-    {
-        sku: "PROD67890",
-        supplierEmail: "supplier2@example.com",
-        batchNumber: "BATCH002",
-        stockQuantity: 250,
-        expiryDate: "2026-06-15",
-        deliveredItem: 50,
-    },
-    {
-        sku: "PROD54321",
-        supplierEmail: "supplier3@example.com",
-        batchNumber: "BATCH003",
-        stockQuantity: 75,
-        expiryDate: "2025-09-10",
-        deliveredItem: 10,
-    },
-];
-
+import { motion } from 'framer-motion';
+import useSupplierOrders from "../../../dataFetch_hooks/useSupplierOrders";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
+import { FiDelete } from "react-icons/fi";
+import { LuPenLine } from "react-icons/lu";
+import UpdateOrderModal from "./UpdateOrderModal";
 
 const SupplierOrders = () => {
-    //   const [orders, setOrders] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUpdateModal, setIsUpModalOpen] = useState(false);
+    const [idOfOrder, setidOfOrder] = useState(null)
+    const [orders, refetch, isLoading] = useSupplierOrders();
+    if (isLoading) return <LoadingSpinner></LoadingSpinner>
+    refetch();
 
 
+    const updateOrder = (id) => {
+        console.log('id', id)
+        setIsUpModalOpen(true)
+        setidOfOrder(id)
+       
+    }
+    const deleteOrder = (id)=>{
+        // console.log(id)
+    }
 
     return (
         <div className="p-6   text-white">
@@ -46,6 +36,7 @@ const SupplierOrders = () => {
                         Add New Order
                     </button>
                 </div>
+
                 <div className="overflow-x-auto shadow-2xl shadow-cyan-400/10 rounded-2xl">
                     <table className="table w-full table-zebra ">
                         <thead className="bg-gray-700">
@@ -56,17 +47,22 @@ const SupplierOrders = () => {
                                 <th>Stock Quantity</th>
                                 <th>Expiry Date</th>
                                 <th>Delivered Item</th>
+                                <th>Actions </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {sampleOrders.map((order, index) => (
+                            {orders.map((order, index) => (
                                 <tr key={index} className="border-b border-gray-700">
                                     <td>{order.sku}</td>
                                     <td>{order.supplierEmail}</td>
                                     <td>{order.batchNumber}</td>
-                                    <td>{order.stockQuantity}</td>
+                                    <td>{order.stock}</td>
                                     <td>{order.expiryDate}</td>
                                     <td>{order.deliveredItem}</td>
+                                    <td className="flex gap-4">
+                                        <button onClick={() => deleteOrder(order._id) }><FiDelete className="text-xl"/></button>
+                                        <button onClick={() => updateOrder(order._id) }><LuPenLine className="text-xl"/></button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -75,27 +71,65 @@ const SupplierOrders = () => {
             </div>
 
             {isModalOpen && (
-                            <div className="fixed inset-0 flex items-center justify-center bg-black/35 backdrop-blur-md drop-shadow-2xl ">
-                                <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-1/2 relative border border-gray-700">
-            
-                                    {/* Modal Header */}
-                                    <div className="flex justify-between items-center">
-                                    <h3 className="text-lg font-bold">Add New Order</h3>
-                                        <button onClick={() => setIsModalOpen(false)} className="text-white">
-                                            <AiOutlineClose size={20} />
-                                        </button>
-                                    </div>
-            
-                                    {/* Modal Form */}
-                                    <OrderModal />
-            
-                                    {/* Modal Footer */}
-                                    <div className="flex justify-end gap-2 mt-4">
-                                        <button onClick={() => setIsModalOpen(false)} className="btn btn-outline">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                <motion.div
+
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    style={{
+                        position: 'fixed',
+                        top: 0, left: 0, right: 0, bottom: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+
+                    }}
+                    className="fixed inset-0 flex items-center justify-center bg-black/35 backdrop-blur-md drop-shadow-2xl ">
+                    <motion.div className="bg-gray-900 p-6 rounded-lg shadow-lg w-1/2 relative border border-gray-700">
+
+                        {/* Modal Header */}
+                        <div className="flex justify-between items-center">
+                            <h3 className="text-lg font-bold">Add New Order</h3>
+                            <button onClick={() => setIsModalOpen(false)} className="text-white">
+                                <AiOutlineClose size={20} />
+                            </button>
+                        </div>
+
+                        {/* Modal Form */}
+                        <OrderModal />
+
+                        {/* Modal Footer */}
+                        <div className="flex justify-end gap-2 mt-4">
+                            <button onClick={() => setIsModalOpen(false)} className="btn btn-outline">Cancel</button>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+            {isUpdateModal && (
+                <div
+
+                    
+                    className="fixed inset-0 flex items-center justify-center bg-black/35 backdrop-blur-md drop-shadow-2xl ">
+                    <div className="bg-gray-900 p-6 rounded-lg shadow-lg w-1/2 relative border border-gray-700">
+
+                        {/* Modal Header */}
+                        <div className="flex justify-between items-center">
+                            <h3 className="text-lg font-bold">Update the Order</h3>
+                            <button onClick={() => setIsUpModalOpen(false)} className="text-white">
+                                <AiOutlineClose size={20} />
+                            </button>
+                        </div>
+
+                        {/* Modal Form */}
+                        <UpdateOrderModal id={idOfOrder}/>
+
+                        {/* Modal Footer */}
+                        <div className="flex justify-end gap-2 mt-4">
+                            <button onClick={() => setIsUpModalOpen(false)} className="btn btn-outline">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

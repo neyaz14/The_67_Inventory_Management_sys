@@ -1,21 +1,19 @@
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { motion } from 'framer-motion';
-import useSupplierSuggestionDrop from "../../../dataFetch_hooks/useSupplierSuggestionDrop";
-import LoadingSpinner from "../../../Components/LoadingSpinner";
+// import LoadingSpinner from "../../../Components/LoadingSpinner";
 
-const OrderModal = () => {
+const UpdateOrderModal = ({id}) => {
     const { register, handleSubmit, reset } = useForm();
     const axiosPublic = useAxiosPublic();
-    const [SupplierSuggestionsData, refetch, isLoading] = useSupplierSuggestionDrop();
-    if (isLoading) return <LoadingSpinner></LoadingSpinner>
-    refetch();
+   
     const onFormSubmit = async (data) => {
         console.log(data);
 
         try {
-            const newOrder = await axiosPublic.post('supplierOrder/addSupplierOrder', data)
+            const newOrder = await axiosPublic.put(`supplierOrder/allSupplierOrders/${id}`, data)
 
             if (newOrder.status === 200) {
 
@@ -50,6 +48,8 @@ const OrderModal = () => {
         reset();
     };
 
+    // !
+    // TODO : fix the update input box 
     return (
         <motion.div 
         initial={{ scale: 0.8, opacity: 0 }}
@@ -63,12 +63,7 @@ const OrderModal = () => {
         >
 
             <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4 p-6 mt-4">
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">SKU</span>
-                    </label>
-                    <input {...register("sku")} placeholder="P014" className="input input-bordered w-full" required />
-                </div>
+              <h1>{id}</h1>
 
                 <div className="form-control">
                     <label className="label">
@@ -93,22 +88,12 @@ const OrderModal = () => {
 
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Expiry Date</span>
+                        <span className="label-text">Delivered Item</span>
                     </label>
-                    <input {...register("expiryDate")} type="date" className="input input-bordered w-full" required />
+                    <input {...register("deliveredItem")} type="number" className="input input-bordered w-full" placeholder="Update the deliveried item number" required />
                 </div>
 
-                <div className="form-control">
-                    <legend className="fieldset-legend">Select a Supplier </legend>
-                    <select defaultValue="Pick a color" className="select w-full " {...register("supplierId")}>
-                        {
-                            SupplierSuggestionsData.map(s => (
-                                <option key={s._id} value={s._id}>{s.name}</option>
-                            ))
-                        }
-
-                    </select>
-                </div>
+               
 
                 <button type="submit" className="btn btn-primary w-full">Submit</button>
             </form>
@@ -118,5 +103,10 @@ const OrderModal = () => {
     );
 };
 
-export default OrderModal;
+export default UpdateOrderModal;
 
+
+
+
+
+// export default UpdateOrderModal;
