@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 
+
 const connectDB = require('./connectdb');
 const userRoutre = require('./routes/routes');
 const authRouter = require('./routes/authRoutes');
@@ -13,6 +14,9 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 // ! -------------------
+
+
+
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -61,7 +65,7 @@ app.post('/jwt', (req, res) => {
     res
         .cookie('token', token, {
             httpOnly: true,
-            secure:false,
+            secure: false,
             // secure: process.env.NODE_ENV === 'production',
             // sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
             path: '/'  // Ensure cookie is removed from all paths
@@ -75,14 +79,13 @@ app.post('/logout', (req, res) => {
     res
         .clearCookie('token', {
             httpOnly: true,
-            secure:false,
+            secure: false,
             // secure: process.env.NODE_ENV === 'production',
             // sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
             path: '/'  // Ensure cookie is removed from all paths
         })
         .send({ message: 'cookie cleared' })
 })
-
 
 
 
@@ -96,8 +99,8 @@ app.post('/logout', (req, res) => {
 
 app.use('/product', productRouter)
 
-app.use('/supplier', supplierRouter )
-app.use('/supplierOrder', supplierOrdersRoute )
+app.use('/supplier', supplierRouter)
+app.use('/supplierOrder', supplierOrdersRoute)
 
 
 
@@ -115,9 +118,9 @@ app.use('/supplierOrder', supplierOrdersRoute )
 
 
 app.get('/', (req, res) => {
-  res.send('Our server is ready -------- ......... ')
+    res.send('Our server is ready -------- ......... ')
 })
 
 app.listen(port, () => {
-  console.log(`server is sitting on port ${port}`);
+    console.log(`server is sitting on port ${port}`);
 })
