@@ -23,7 +23,7 @@ const StockOverview = () => {
                     <tbody>
                         {products?.map((product) => (
                             <tr key={product.id}>
-                                <td>{product.name}</td>
+                                <td>{product.productName}</td>
                                 <td>{product.sku}</td>
                                 <td>{product.stock}</td>
                                 <td>{product.expiryDate}</td>

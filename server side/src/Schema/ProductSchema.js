@@ -16,6 +16,7 @@ const productSchema = new mongoose.Schema({
   imageUrl: { type: String },
   description: { type: String },
   discount: { type: Number, default:0},
+  expiryDate:{type: Date, required:true }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Product", productSchema);
